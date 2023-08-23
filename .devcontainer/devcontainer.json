@@ -1,0 +1,76 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/javascript-node
+{
+  "name": "Node.js",
+  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+  // "image": "mcr.microsoft.com/devcontainers/javascript-node:0-18-bullseye",
+  // ワークスペースフォルダ名
+  "workspaceFolder": "/app",
+  // DockerComposeファイル
+  "dockerComposeFile": "../docker-compose.yml",
+  // 起動するサービス名
+  "service": "playground",
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  // "features": {},
+  // Configure tool-specific properties.
+  "customizations": {
+    // Configure properties specific to VS Code.
+    "vscode": {
+      "settings": {
+        // タブサイズ
+        "editor.tabSize": 2,
+        // 保存する際にフォーマットする
+        "editor.formatOnSave": true,
+        // フォーマッターにprettierを使う
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        // 保存する際にESLintとStylelintを動かす
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": true,
+          "source.fixAll.stylelint": true,
+          "source.organizeImports": true
+        },
+        // stylelintを適応させるファイルの種類
+        "stylelint.validate": ["html", "typescriptreact"],
+        // デフォルトの形式チェックを無効化
+        "css.validate": false,
+        "scss.validate": false,
+        // 相対インポートよりも少ないパスセグメントを持つ非相対インポートが利用可能な場合にのみ、非相対インポートを優先
+        "typescript.preferences.importModuleSpecifier": "shortest"
+      },
+      "extensions": [
+        // ES7+ React/Redux/React-Native用のスニペット
+        "dsznajder.es7-react-js-snippets",
+        // javaScript用のスニペット
+        "xabikos.JavaScriptSnippets",
+        // Git拡張
+        "eamodio.gitlens",
+        // スペルチェック
+        "streetsidesoftware.code-spell-checker",
+        // フォーマッター
+        "esbenp.prettier-vscode",
+        // スタイルチェック
+        "dbaeumer.vscode-eslint",
+        // エディター設定
+        "EditorConfig.EditorConfig",
+        // CSSのスタイルチェック
+        "stylelint.vscode-stylelint",
+        // 自動インポート
+        "steoates.autoimport"
+      ]
+    }
+  },
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  "forwardPorts": [5137],
+  // Use 'portsAttributes' to set default properties for specific forwarded ports.
+  // More info: https://containers.dev/implementors/json_reference/#port-attributes
+  "portsAttributes": {
+    "9000": {
+      "label": "Hello Remote World",
+      "onAutoForward": "notify"
+    }
+  },
+  // Use 'postCreateCommand' to run commands after the container is created.
+  "postCreateCommand": "yarn install"
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  // "remoteUser": "root"
+}

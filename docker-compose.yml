@@ -1,0 +1,19 @@
+# docker-composeのバージョン選択
+version: '3.9'
+services:
+  # サービス名
+  playground:
+    # コンテナ名
+    container_name: playground
+    # イメージ
+    image: mcr.microsoft.com/devcontainers/javascript-node:0-18-bullseye
+    # 作業ディレクトリを指定
+    working_dir: /app
+    # ボリュームのキャッシュを利用
+    volumes:
+      - ./:/app:cached
+    # コンテナを正常終了するのを防ぐ
+    tty: true
+    # 公開用のポート指定。ホスト側:コンテナ側
+    ports:
+      - '51730:5173'
